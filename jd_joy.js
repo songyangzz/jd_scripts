@@ -162,11 +162,6 @@ async function joinTwoPeopleRun() {
       if (petRaceResult === 'not_participate') {
         console.log(`暂未参赛，现在为您参加${teamLevelTemp}人赛跑`);
         console.log($.lastUsers);
-        if($.index>4&&$.lastUsers<50){
-            console.log(`上一个比赛人数${$.lastUsers},等待`)
-            return;
-            
-        }
         await runMatch(teamLevelTemp * 1);
         $.lastUsers=0;
         if ($.runMatchResult.success) {
@@ -321,6 +316,7 @@ async function petTask() {
       for (let shop of followShops) {
         if (!shop.status) {
             await dofollowShop(shop.shopId);
+            await $.wait(5000)
           const followShopRes = await followShop(shop.shopId);
           console.log(`关注店铺${shop.name}结果::${JSON.stringify(followShopRes)}`)
         }
@@ -368,6 +364,7 @@ async function petTask() {
       for (let followGoodItem of followGoodList) {
         if (!followGoodItem.status) {
           const body = `sku=${followGoodItem.sku}&reqSource=h5`;
+          await doScanMarket('follow_good', followGoodItem.sku);
           const scanMarketRes = await scanMarket('followGood', body, 'application/x-www-form-urlencoded');
           // const scanMarketRes = await appScanMarket('followGood', `sku=${followGoodItem.sku}&reqSource=h5`, 'application/x-www-form-urlencoded');
           console.log(`关注商品-${followGoodItem.skuName}结果::${JSON.stringify(scanMarketRes)}`)
@@ -814,7 +811,7 @@ function getPetTaskConfig() {
         if (err) {
           console.log('\n京东宠汪汪: API查询请求失败 ‼️‼️')
         } else {
-           console.log('JSON.parse(data)', JSON.parse(data))
+         //  console.log('JSON.parse(data)', JSON.parse(data))
           $.getPetTaskConfigRes = JSON.parse(data);
         }
       } catch (e) {
