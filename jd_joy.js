@@ -162,7 +162,11 @@ async function joinTwoPeopleRun() {
       if (petRaceResult === 'not_participate') {
         console.log(`暂未参赛，现在为您参加${teamLevelTemp}人赛跑`);
         console.log($.lastUsers);
-      
+        if($.index>4&&$.lastUsers<50){
+            console.log(`上一个比赛人数${$.lastUsers},等待`)
+            return;
+            
+        }
         await runMatch(teamLevelTemp * 1);
         $.lastUsers=0;
         if ($.runMatchResult.success) {
@@ -329,12 +333,12 @@ async function petTask() {
       for (let scanMarketItem of scanMarketList) {
         if (!scanMarketItem.status) {
           const body = {
-            "marketLink": scanMarketItem.marketLink,
+            "marketLink": scanMarketItem.marketLinkH5,
             "taskType": "ScanMarket"
             //"reqSource": "weapp"
           };
-          await doScanMarket('scan', scanMarketItem.marketLink);
-          //await $.wait(5000)
+          await doScanMarket('scan', encodeURI(scanMarketItem.marketLinkH5));
+          await $.wait(5000)
           const scanMarketRes = await scanMarket('scan', body);
           console.log(`逛会场-${scanMarketItem.marketName}结果::${JSON.stringify(scanMarketRes)}`)
         }
@@ -351,7 +355,7 @@ async function petTask() {
             "taskType": "FollowChannel"
           };
            await doScanMarket('follow_channel', followChannelItem.channelId);
-           //await $.wait(5000)
+           await $.wait(5000)
           const scanMarketRes = await scanMarket('scan', body);
           console.log(`浏览频道-${followChannelItem.channelName}结果::${JSON.stringify(scanMarketRes)}`)
         }
@@ -372,7 +376,7 @@ async function petTask() {
     }
     //看激励视频
     if (item['taskType'] === 'ViewVideo') {
-      console.log('----浏览频道----');
+      console.log('----激励视频----');
       if (item.taskChance === joinedCount) {
         console.log('今日激励视频已看完')
       } else {
@@ -398,7 +402,7 @@ async function appPetTask() {
             const body = { marketLink: scan.marketLinkH5, taskType: 'ScanMarket'}
             console.log(scan.marketLinkH5);
             await doScanMarket('scan_market',decodeURIComponent(scan.marketLinkH5));
-            //await $.wait(5000)
+            await $.wait(5000)
             await appScanMarket('scan', body);
           }
         }
@@ -474,7 +478,7 @@ function scanMarket(type, body, cType = 'application/json') {
   return new Promise(resolve => {
     // const url = `${weAppUrl}/${type}`;
     const host = `jdjoy.jd.com`;
-    const reqSource = 'weapp';
+    const reqSource = 'h5';
     let opt = {
       // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
       url: `//jdjoy.jd.com/common/pet/${type}?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
@@ -794,18 +798,18 @@ function getPetTaskConfig() {
     // const url = `${weAppUrl}/getPetTaskConfig?reqSource=weapp`;
     // const host = `jdjoy.jd.com`;
     // const reqSource = 'h5';
-    const host = `draw.jdfcloud.com`;
+    const host = `jdjoy.jd.com`;
     const reqSource = 'weapp';
     let opt = {
       // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-      url: "//draw.jdfcloud.com//common/pet/getPetTaskConfig?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE",
+      url: "//jdjoy.jd.com//common/pet/getPetTaskConfig?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE",
       method: "GET",
       data: {},
       credentials: "include",
       header: {"content-type": "application/json"}
     }
     const url = "https:"+ opt.url
-    $.get(taskUrl(url.replace(/reqSource=h5/, 'reqSource=weapp'), host, reqSource), (err, resp, data) => {
+    $.get(taskUrl(url.replace(/reqSource=h5/, 'reqSource=h5'), host, reqSource), (err, resp, data) => {
       try {
         if (err) {
           console.log('\n京东宠汪汪: API查询请求失败 ‼️‼️')
