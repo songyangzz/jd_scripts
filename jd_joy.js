@@ -64,6 +64,7 @@ const weAppUrl = 'https://draw.jdfcloud.com//pet';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
+  //cookiesArr.reverse();
   for (let i = 0; i <cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -110,13 +111,14 @@ async function jdJoy() {
         }
       }
       await feedPets(FEED_NUM);//喂食
-      await Promise.all([
-        petTask(),
-        appPetTask()
-      ])
+      await  petTask();
+       
+      await  appPetTask();
+    
+      console.log('任务完成');
       await deskGoodsTask();//限时货柜
       await enterRoom();
-      await joinTwoPeopleRun()//参加双人赛跑
+      //await joinTwoPeopleRun()//参加双人赛跑
     } else {
       message += `${$.getPetTaskConfigRes.errorMessage}`;
     }
@@ -161,6 +163,7 @@ async function joinTwoPeopleRun() {
       if (petRaceResult === 'not_participate') {
         console.log(`暂未参赛，现在为您参加${teamLevelTemp}人赛跑`);
         console.log($.lastUsers);
+      
         await runMatch(teamLevelTemp * 1);
         $.lastUsers=0;
         if ($.runMatchResult.success) {
