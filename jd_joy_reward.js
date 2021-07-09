@@ -155,7 +155,7 @@ async function joyReward() {
       if (rewardNum && (rewardNum === 1 || rewardNum === 20 || rewardNum === 50 || rewardNum === 100 || rewardNum === 500 || rewardNum === 1000)) {
         //开始兑换
         if (salePrice) {
-          if (leftStock) {
+          if (true) {
             if (!saleInfoId) return
             // console.log(`当前账户积分:${data.coin}\n当前京豆库存:${leftStock}\n满足兑换条件,开始为您兑换京豆\n`);
             console.log(`\n您设置的兑换${giftValue}京豆库存充足,开始为您兑换${giftValue}京豆\n`);
