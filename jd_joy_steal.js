@@ -288,7 +288,7 @@ async function helpFriendsFeed() {
 function getFriends(currentPage = '1') {
   return new Promise(resolve => {
     let opt = {
-      url: `//draw.jdfcloud.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=weapp&invokeKey=qRKHmL4sna8ZOP9F`,
+      url: `//jdjoy.jd.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=weapp&invokeKey=qRKHmL4sna8ZOP9F`,
       // url: `//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       method: "GET",
       data: {},
@@ -301,7 +301,7 @@ function getFriends(currentPage = '1') {
       headers: {
         'Cookie': cookie,
         'reqSource': 'h5',
-        'Host': 'draw.jdfcloud.com',
+        'Host': 'jdjoy.jd.com',
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
         'Referer': 'https://jdjoy.jd.com/pet/index',
@@ -320,7 +320,7 @@ function getFriends(currentPage = '1') {
           // console.log('JSON.parse(data)', JSON.parse(data))
           if (data) {
             $.getFriendsData = JSON.parse(data);
-            console.log(data);
+            //console.log(data);
           } else {
             console.log(`京豆api返回数据为空，请检查自身原因`)
           }
@@ -367,7 +367,7 @@ function enterFriendRoom(friendPin) {
           // console.log('进入好友房间', JSON.parse(data))
           if (data) {
             data = JSON.parse(data);
-            console.log(data);
+            //console.log(data);
             console.log(`可偷狗粮：${data.data.stealFood}`)
             console.log(`可偷积分：${data.data.friendHomeCoin}`)
           } else {
