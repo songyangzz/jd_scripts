@@ -288,7 +288,7 @@ async function helpFriendsFeed() {
 function getFriends(currentPage = '1') {
   return new Promise(resolve => {
     let opt = {
-      url: `//jdjoy.jd.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=weapp&invokeKey=ztmFUCxcPMNyUq0P`,
+      url: `//jdjoy.jd.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=5&invokeKey=ztmFUCxcPMNyUq0P`,
       // url: `//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=ztmFUCxcPMNyUq0P`,
       method: "GET",
       data: {},
