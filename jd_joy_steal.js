@@ -128,7 +128,7 @@ const $ = new Env('宠汪汪偷好友积分与狗粮');
 }(this);
 
 const lkt=new Date().getTime();
-const lks=$.md5("ztmFUCxcPMNyUq0P"+lkt);
+const lks=$.md5("RtKLB8euDo7KwsO0"+lkt);
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -352,7 +352,7 @@ function enterRoom() {
     const reqSource = 'weapp';
     let opt = {
       // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-      url: `//draw.jdfcloud.com/common/pet/enterRoom/h5?reqSource=h5&invitePin=&openId=&invokeKey=ztmFUCxcPMNyUq0P`,
+      url: `//draw.jdfcloud.com/common/pet/enterRoom/h5?reqSource=h5&invitePin=&openId=&invokeKey=RtKLB8euDo7KwsO0`,
       method: "GET",
       data: {},
       credentials: "include",
@@ -443,8 +443,8 @@ async function helpFriendsFeed() {
 function getFriends(currentPage = '1') {
   return new Promise(resolve => {
     let opt = {
-      url: `//jdjoy.jd.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=webapp&invokeKey=ztmFUCxcPMNyUq0P`,
-      // url: `//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=ztmFUCxcPMNyUq0P`,
+      url: `//jdjoy.jd.com//common/pet/api/getFriends?itemsPerPage=20&currentPage=${currentPage * 1}&reqSource=webapp&invokeKey=RtKLB8euDo7KwsO0`,
+      // url: `//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0`,
       method: "GET",
       data: {},
       credentials: "include",
@@ -633,7 +633,7 @@ function getRandomFood(friendPin) {
 function getCoinChanges() {
   return new Promise(resolve => {
     let opt = {
-      url: `//jdjoy.jd.com/common/pet/getCoinChanges?changeDate=${Date.now()}&reqSource=h5&invokeKey=ztmFUCxcPMNyUq0P`,
+      url: `//jdjoy.jd.com/common/pet/getCoinChanges?changeDate=${Date.now()}&reqSource=h5&invokeKey=RtKLB8euDo7KwsO0`,
       // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
       method: "GET",
       data: {},
@@ -760,7 +760,7 @@ function TotalBean() {
 }
 function taskUrl(functionId, friendPin) {
   let opt = {
-    url: `//jdjoy.jd.com/common/pet/${functionId}?friendPin=${encodeURI(friendPin)}&reqSource=h5&invokeKey=ztmFUCxcPMNyUq0P`,
+    url: `//jdjoy.jd.com/common/pet/${functionId}?friendPin=${encodeURI(friendPin)}&reqSource=h5&invokeKey=RtKLB8euDo7KwsO0`,
     // url: `//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5`,
     method: "GET",
     data: {},
