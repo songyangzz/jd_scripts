@@ -129,7 +129,7 @@ const $ = new Env('宠汪汪积分兑换奖品');
 }(this);
 
 const lkt=new Date().getTime();
-const lks=$.md5("RtKLB8euDo7KwsO0"+lkt);
+const lks=$.md5("JL1VTNRadM68cIMQ"+lkt);
 let allMessage = '';
 let joyRewardName = 0;//是否兑换京豆，默认0不兑换京豆，其中20为兑换20京豆,500为兑换500京豆，0为不兑换京豆.数量有限先到先得
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -314,7 +314,7 @@ async function joyReward() {
 }
 function getExchangeRewards() {
   let opt = {
-    url: "//jdjoy.jd.com/common/gift/getBeanConfigs?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0",
+    url: "//jdjoy.jd.com/common/gift/getBeanConfigs?reqSource=h5&invokeKey=JL1VTNRadM68cIMQ",
     method: "GET",
     data: {},
     credentials: "include",
@@ -366,7 +366,7 @@ function getPetTaskConfig() {
     const reqSource = 'weapp';
     let opt = {
       // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-      url: "//draw.jdfcloud.com//common/pet/getPetTaskConfig?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0",
+      url: "//draw.jdfcloud.com//common/pet/getPetTaskConfig?reqSource=h5&invokeKey=JL1VTNRadM68cIMQ",
       method: "GET",
       data: {},
       credentials: "include",
@@ -410,7 +410,7 @@ function taskUrl(url, Host, reqSource) {
 function exchange(saleInfoId, orderSource) {
   let body = {"buyParam":{"orderSource":orderSource,"saleInfoId":saleInfoId},"deviceInfo":{}}
   let opt = {
-    "url": "//jdjoy.jd.com/common/gift/new/exchange?reqSource=h5&invokeKey=RtKLB8euDo7KwsO0",
+    "url": "//jdjoy.jd.com/common/gift/new/exchange?reqSource=h5&invokeKey=JL1VTNRadM68cIMQ",
     "data":body,
     "credentials":"include","method":"POST","header":{"content-type":"application/json"}
   }
